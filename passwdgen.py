@@ -7,7 +7,7 @@ Usage: passwdgen.py [-hvb] [-t <template>] [-n <number>]
 Options:
   -h: Prints this help message and quits.
   -v: Prints version information.
-  -t: Sets password template (default: cvcvcvcdd).
+  -t: Sets password template (default: cvcpcvccvcpdd).
   -n: Sets number of passwords to generate (default 10).
   -b: Calculates number of bits in specified pattern; no passwords generated.
   

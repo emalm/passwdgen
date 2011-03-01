@@ -2,27 +2,6 @@
 import random, sys, getopt
 from math import log
 
-usage = """
-Usage: passwdgen.py [-hvb] [-t <template>] [-n <number>]
-Options:
-  -h: Prints this help message and quits.
-  -v: Prints version information.
-  -t: Sets password template (default: cvcpcvccvcpdd).
-  -n: Sets number of passwords to generate (default 10).
-  -b: Calculates number of bits in specified pattern; no passwords generated.
-  
-Password templates use the following characters:
-  c     lowercase consonant
-  v     lowercase vowel
-  l     lowercase letter
-  C     mixed-case consonant
-  V     mixed-case vowel
-  L     mixed-case letter
-  d, D  digit
-  p, P  punctuation symbol (from !@#%^&()-_+=[]{};,.?)
-  h, H  hex digit (h for lowercase a-f, H for uppercase)
-"""
-
 versionstring = "Password generator script, version 0.05."
 
 def buildusage(name):

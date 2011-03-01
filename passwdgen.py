@@ -20,9 +20,31 @@ Password templates use the following characters:
   L     mixed-case letter
   d, D  digit
   p, P  punctuation symbol (from !@#%^&()-_+=[]{};,.?)
+  h, H  hex digit (h for lowercase a-f, H for uppercase)
 """
 
-versionstring = "Password generator script, version 0.04."
+versionstring = "Password generator script, version 0.05."
+
+def buildusage(name):
+	return 'Usage: ' + name + """ [-hvb] [-t <template>] [-n <number>]
+Options:
+  -h: Prints this help message and quits.
+  -v: Prints version information.
+  -t: Sets password template (default: cvcpcvccvcpdd).
+  -n: Sets number of passwords to generate (default 10).
+  -b: Calculates number of bits in specified pattern; no passwords generated.
+
+Password templates use the following characters:
+  c     lowercase consonant
+  v     lowercase vowel
+  l     lowercase letter
+  C     mixed-case consonant
+  V     mixed-case vowel
+  L     mixed-case letter
+  d, D  digit
+  p, P  punctuation symbol (from !@#%^&()-_+=[]{};,.?)
+  h, H  hex digit (h for lowercase a-f, H for uppercase)
+	"""
 
 def main(argv = None):
 	if argv is None:
@@ -40,7 +62,7 @@ def main(argv = None):
 
 	for (o, a) in opts:
 		if o in ("-h", "--help"):
-			print usage
+			print buildusage(argv[0])
 			return 0
 		elif o in ("-v", "--version"):
 			print versionstring
@@ -95,6 +117,9 @@ def make_pools():
 	
 	pools['p'] = list('!@#%^&()-_+=[]{};,.?')
 	pools['P'] = pools["p"]
+	
+	pools['h'] = pools["d"] + list('abcdef')
+	pools['H'] = pools["d"] + list('ABCDEF')
 	
 	return pools
 	

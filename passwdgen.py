@@ -81,7 +81,10 @@ def make_passwd(pattern, pools):
 def make_pools(keyboard):
 	consonants = {
 		'u': 'bcdfghjklmnpqrstvwxz',
-		'd': 'dhtns' * 4 + 'pfgcrl' * 2 + 'qjkxbmwvz',
+		'd': (('htns' * 2 + 'd') * 3 + 
+			  ('gcrl' * 2 + 'f') * 2 +
+			  ('mwvz' * 2 + 'b')) +
+			 ('p' * 2 * 2 + ('qjk' * 2 + 'x')),
 		'q': 'sdfghjkl' * 4 + 'qwrtp' * 2 + 'zxcvbnm'
 	}
 	
@@ -91,13 +94,23 @@ def make_pools(keyboard):
 	
 	vowels = {
 		'u': 'aeiouy',
-		'd': 'aeiou' * 3 + 'y' * 2,
+		'd': ('aoeu' * 2 + 'i') * 2 + 'y',
 		'q': 'a' * 3 + 'eyuio' * 2
 	}
 	
 	vowels['uniform'] = vowels['u']
 	vowels['dvorak'] = vowels['d']
 	vowels['qwerty'] = vowels['q']
+	
+	punct = {
+		'u': '!@#%^&()-_+=[]{};,.?',
+		'd': '---,,..//=[]' * 2 + '___??++~!@#$%^&(){}',
+		'q': ';;;,./[[]]-=' * 2 + '???{{}}~!@#$%^&()_+'
+	}
+
+	punct['uniform'] = punct['u']
+	punct['dvorak'] = punct['d']
+	punct['qwerty'] = punct['q']
 	
 	pools = {}
 	
@@ -113,7 +126,7 @@ def make_pools(keyboard):
 	pools['d'] = [str(digit) for digit in range(10)]
 	pools['D'] = pools['d']
 	
-	pools['p'] = list('!@#%^&()-_+=[]{};,.?')
+	pools['p'] = list(punct[keyboard])
 	pools['P'] = pools['p']
 	
 	pools['h'] = pools['d'] + list('abcdef')

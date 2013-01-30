@@ -4,7 +4,6 @@ import getopt
 import argparse
 from math import log
 
-versionstring = "Password generator script, version 0.05."
 version = '0.06'
 
 def buildusage(name):
@@ -32,15 +31,18 @@ def main(argv = None):
 	if argv is None:
 		argv = sys.argv
 
-	parser = argparse.ArgumentParser(description='Password generator script.')
+	parser = argparse.ArgumentParser(description='Batch password generator script.')
 
-	parser.add_argument('-t', '--template', default='cvcpcvccvcpdd')
-	parser.add_argument('-n', '--num', type=int, default=10)
+	parser.add_argument('-t', '--template',
+		default='cvcpcvccvcpdd',
+		help="""Password template. Recognized characters: cvlCVLdph.""")
+	parser.add_argument('-n', '--num', type=int, default=10, help='number of passwords to generate')
 	parser.add_argument('-b', '--bits', action='store_true')
 
 	parser.add_argument('-k', '--keyboard', 
 		choices=['uniform', 'u', 'qwerty', 'q', 'dvorak', 'd'],
-		default='uniform')
+		default='uniform',
+		help='Keyboard key distribution to prefer: dvorak, qwerty, or uniform')
 		
 	parser.add_argument('-v', '--version', action='version', 
 						version='%(prog)s' + version)

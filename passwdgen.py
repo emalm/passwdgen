@@ -133,10 +133,15 @@ def make_pools(keyboard):
 	
 	pools['h'] = pools['d'] + list('abcdef')
 	pools['H'] = pools['d'] + list('ABCDEF')
+
+	pools['-'] = ['-']
 	
 	return pools
 	
 def array_entropy(seq):
+	if len(seq) == 0:
+		return 0
+
 	counts = {}
 	for elt in seq:
 		counts[elt] = 0

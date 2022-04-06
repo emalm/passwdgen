@@ -63,12 +63,12 @@ def main(argv = None):
 		
 	if bitsonly:
 		for pattern in patterns:
-			print pattern + ": " + str(pattern_entropy(pattern, pools))
+			print(pattern + ": " + str(pattern_entropy(pattern, pools)))
 	else:
 		random.seed()
 		for pattern in patterns:
 			for i in range(numtogen):
-				print make_passwd(pattern, pools)
+				print(make_passwd(pattern, pools))
 				
 	return 0
 	
@@ -152,7 +152,7 @@ def array_entropy(seq):
 	# if each p_i = c_i/t, reduces to S = \log_2 t - \sum_i c_i/t \log_2 c_i
 	bits = log(len(seq))
 	
-	for key in counts.keys():
+	for key in list(counts.keys()):
 		bits -= counts[key] * log(counts[key]) / len(seq)
 		
 	# convert to base-2 logs
